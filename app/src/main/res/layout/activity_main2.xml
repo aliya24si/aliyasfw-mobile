@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F3E5F5">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Kalkulator Bangun"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="#6A1B9A"
+            android:gravity="center"
+            android:paddingBottom="16dp" />
+
+        <!-- SEGITIGA -->
+        <TextView
+            android:text="Luas Segitiga"
+            android:textStyle="bold"
+            android:textColor="#8E24AA"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/inputAlas"
+            android:hint="Masukkan Alas"
+            android:inputType="numberDecimal"
+            android:backgroundTint="#CE93D8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/inputTinggi"
+            android:hint="Masukkan Tinggi"
+            android:inputType="numberDecimal"
+            android:backgroundTint="#CE93D8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btnSegitiga"
+            android:text="Hitung Segitiga"
+            android:backgroundTint="#AB47BC"
+            android:textColor="#FFFFFF"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/hasilSegitiga"
+            android:text="Hasil akan muncul disini"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="16dp" />
+
+        <!-- KUBUS -->
+        <TextView
+            android:text="Volume Kubus"
+            android:textStyle="bold"
+            android:textColor="#8E24AA"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/inputSisi"
+            android:hint="Masukkan Sisi"
+            android:inputType="numberDecimal"
+            android:backgroundTint="#CE93D8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btnKubus"
+            android:text="Hitung Kubus"
+            android:backgroundTint="#8E24AA"
+            android:textColor="#FFFFFF"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/hasilKubus"
+            android:text="Hasil akan muncul disini"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+</ScrollView>
