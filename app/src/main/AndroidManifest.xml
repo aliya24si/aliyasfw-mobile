@@ -12,10 +12,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Aliyalilac">
         <activity
-            android:name=".tugas_pertemuan2.MainActivity"
+            android:name=".tugas_pertemuan2.BangunRuangActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".tugas_pertemuan4.PharmacyActivity"
+            android:exported="false" />
+        <activity
+            android:name=".tugas_pertemuan4.HomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".tugas_pertemuan3.WelcomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".tugas_pertemuan3.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,6 +32,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".MainActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

@@ -1,17 +1,35 @@
 package com.example.aliya_lilac.tugas_pertemuan2
 
-import androidx.appcompat.app.AppCompatActivity
-import com.example.aliya_lilac.R
 import android.os.Bundle
 import android.util.Log
-import android.widget.*
+import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import com.example.aliya_lilac.R
 
-class MainActivity : AppCompatActivity() {
-
+class BangunRuangActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main2)
+        setContentView(R.layout.activity_bangun_ruang)
 
+        // --- TAMBAHAN UNTUK MENANGKAP DATA DARI WELCOME PAGE ---
+        val tvJudul = findViewById<TextView>(R.id.tvJudulHalaman)
+        val tvDesc = findViewById<TextView>(R.id.tvDescHalaman)
+
+        val judulDariWelcome = intent.getStringExtra("EXTRA_JUDUL")
+        val descDariWelcome = intent.getStringExtra("EXTRA_DESC")
+
+        // Jika data tidak kosong, kita pasang ke TextView
+        if (judulDariWelcome != null) {
+            tvJudul.text = judulDariWelcome
+        }
+        if (descDariWelcome != null) {
+            tvDesc.text = descDariWelcome
+        }
+        // -------------------------------------------------------
+
+        // Kode hitungan kamu tetap di bawah sini (tidak berubah)
         val alas = findViewById<EditText>(R.id.inputAlas)
         val tinggi = findViewById<EditText>(R.id.inputTinggi)
         val hitungSegitiga = findViewById<Button>(R.id.btnSegitiga)
@@ -21,7 +39,6 @@ class MainActivity : AppCompatActivity() {
         val hitungKubus = findViewById<Button>(R.id.btnKubus)
         val hasilKubus = findViewById<TextView>(R.id.hasilKubus)
 
-        // Hitung luas segitiga
         hitungSegitiga.setOnClickListener {
             val a = alas.text.toString().toDoubleOrNull()
             val t = tinggi.text.toString().toDoubleOrNull()
@@ -35,7 +52,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        // Hitung volume kubus
         hitungKubus.setOnClickListener {
             val s = sisi.text.toString().toDoubleOrNull()
 
