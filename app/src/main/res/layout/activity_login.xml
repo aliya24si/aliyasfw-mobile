@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1A315E" android:padding="40dp"> <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_centerInParent="true"
+    android:gravity="center">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Welcome!"
+        android:textColor="@android:color/white" android:textSize="32sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:gravity="center"
+        android:text="Masuk untuk melanjutkan ke sistem Anda"
+        android:textColor="#CCCCCC" />
+
+    <EditText
+    android:id="@+id/etEmail"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:background="@drawable/bg_input_login"
+    android:hint="aliya@gmail.com"
+    android:inputType="textEmailAddress"
+    android:paddingStart="16dp"
+    android:layout_marginBottom="16dp"
+    android:textColor="#333333" />
+
+    <EditText
+        android:id="@+id/etPassword"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/bg_input_login"
+        android:hint="........"
+        android:inputType="textPassword"
+        android:paddingStart="16dp"
+        android:textColor="#333333" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginTop="8dp"
+        android:text="Register?"
+        android:textColor="#2196F3"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_marginTop="32dp"
+        android:backgroundTint="#FFFFFF" android:text="Login"
+        android:textAllCaps="false"
+        android:textColor="#1A315E" /> </LinearLayout>
+</RelativeLayout>

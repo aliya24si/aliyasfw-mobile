@@ -5,4 +5,6 @@
     <color name="brand_cyan">#26D1D9</color>
     <color name="brand_light_cyan">#E8F9FB</color>
     <color name="text_gray">#666666</color>
+    <color name="navy_primary">#1A315E</color>
+    <color name="gray_text">#757575</color>
 </resources>
