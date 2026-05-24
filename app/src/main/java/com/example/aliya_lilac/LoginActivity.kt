@@ -1,43 +1,54 @@
 package com.example.aliya_lilac
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.widget.*
+import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.button.MaterialButton
+import com.google.android.material.textfield.TextInputLayout
 
 class LoginActivity : AppCompatActivity() {
-    @SuppressLint("MissingInflatedId")
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        val btnLogin = findViewById<Button>(R.id.btnLogin)
-        val tvRegister = findViewById<TextView>(R.id.tvRegisterLink) // Tambahkan ID di XML login nanti
-        val etEmail = findViewById<EditText>(R.id.etEmail)
-        val etPassword = findViewById<EditText>(R.id.etPassword)
+        val tilEmail = findViewById<TextInputLayout>(R.id.tilEmail)
+        val tilPassword = findViewById<TextInputLayout>(R.id.tilPassword)
+        val btnLogin = findViewById<MaterialButton>(R.id.btnLogin)
+        val tvRegister = findViewById<TextView>(R.id.tvRegisterLink)
 
         val sharedPref = getSharedPreferences("UserPrefs", MODE_PRIVATE)
 
         // Navigasi ke Register
-        // Catatan: Pastikan di activity_login.xml, TextView "Register?" sudah diberi id: @+id/tvRegisterLink
-        findViewById<TextView>(R.id.tvRegisterLink).setOnClickListener {
+        tvRegister.setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))
         }
 
         btnLogin.setOnClickListener {
-            val inputUser = etEmail.text.toString()
-            val inputPass = etPassword.text.toString()
+            val inputUser = tilEmail.editText?.text.toString().trim()
+            val inputPass = tilPassword.editText?.text.toString().trim()
 
-            // Ambil data dari SP
+            // Reset error berkala
+            tilEmail.error = null
+            tilPassword.error = null
+
+            // Ambil data registrasi dari Shared Preferences
             val registeredUser = sharedPref.getString("registered_user", "")
             val registeredPass = sharedPref.getString("registered_pass", "")
 
-            // Rule 1: username = password
-            // Rule 2: username & password sesuai yang diregistrasi
-            if ((inputUser == inputPass && inputUser.isNotEmpty()) ||
-                (inputUser == registeredUser && inputPass == registeredPass && inputUser.isNotEmpty())) {
+            if (inputUser.isEmpty()) {
+                tilEmail.error = "Username/Email tidak boleh kosong"
+                return@setOnClickListener
+            }
+            if (inputPass.isEmpty()) {
+                tilPassword.error = "Password tidak boleh kosong"
+                return@setOnClickListener
+            }
 
+            // Validasi aturan login
+            if ((inputUser == inputPass) || (inputUser == registeredUser && inputPass == registeredPass)) {
                 val editor = sharedPref.edit()
                 editor.putBoolean("isLogin", true)
                 editor.apply()
@@ -46,7 +57,8 @@ class LoginActivity : AppCompatActivity() {
                 startActivity(Intent(this, MainActivity::class.java))
                 finish()
             } else {
-                etEmail.error = "Username atau Password salah"
+                tilEmail.error = "Username atau Password salah"
+                tilPassword.error = "Username atau Password salah"
             }
         }
     }

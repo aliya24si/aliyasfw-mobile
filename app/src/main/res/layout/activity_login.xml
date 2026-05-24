@@ -1,68 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#1A315E" android:padding="40dp"> <LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:layout_centerInParent="true"
-    android:gravity="center">
+    android:background="#1A315E"
+    android:padding="40dp">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Welcome!"
-        android:textColor="@android:color/white" android:textSize="32sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
-        android:gravity="center"
-        android:text="Masuk untuk melanjutkan ke sistem Anda"
-        android:textColor="#CCCCCC" />
-
-    <EditText
-    android:id="@+id/etEmail"
-    android:layout_width="match_parent"
-    android:layout_height="50dp"
-    android:background="@drawable/bg_input_login"
-    android:hint="aliya@gmail.com"
-    android:inputType="textEmailAddress"
-    android:paddingStart="16dp"
-    android:layout_marginBottom="16dp"
-    android:textColor="#333333" />
-
-    <EditText
-        android:id="@+id/etPassword"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@drawable/bg_input_login"
-        android:hint="........"
-        android:inputType="textPassword"
-        android:paddingStart="16dp"
-        android:textColor="#333333" />
-
-    <TextView
-        android:id="@+id/tvRegisterLink"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        android:layout_marginTop="8dp"
-        android:text="Register?"
-        android:textColor="#2196F3"
-        android:textStyle="bold"
-        android:clickable="true"
-        android:focusable="true" />
+        android:orientation="vertical"
+        android:layout_centerInParent="true"
+        android:gravity="center">
 
-    <Button
-        android:id="@+id/btnLogin"
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:layout_marginTop="32dp"
-        android:backgroundTint="#FFFFFF" android:text="Login"
-        android:textAllCaps="false"
-        android:textColor="#1A315E" /> </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Welcome!"
+            android:textColor="@android:color/white"
+            android:textSize="32sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
+            android:gravity="center"
+            android:text="Masuk untuk melanjutkan ke sistem Anda"
+            android:textColor="#CCCCCC" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilEmail"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:hint="Email atau Username"
+            app:startIconDrawable="@android:drawable/ic_dialog_email"
+            app:startIconTint="#1A315E"
+            app:boxBackgroundColor="@android:color/transparent"
+            android:background="@drawable/bg_input_login"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="0dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:textColor="#333333" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilPassword"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Password"
+            app:startIconDrawable="@android:drawable/ic_lock_lock"
+            app:startIconTint="#1A315E"
+            app:endIconMode="password_toggle"
+            app:endIconTint="#1A315E"
+            app:boxBackgroundColor="@android:color/transparent"
+            android:background="@drawable/bg_input_login"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="0dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:textColor="#333333" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/tvRegisterLink"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginTop="12dp"
+            android:text="Register?"
+            android:textColor="#EDB254"
+            android:textStyle="bold"
+            android:clickable="true"
+            android:focusable="true" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnLogin"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginTop="32dp"
+            android:text="Login"
+            android:textAllCaps="false"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#1A315E"
+            app:backgroundTint="#FFFFFF"
+            app:cornerRadius="12dp" />
+
+    </LinearLayout>
 </RelativeLayout>

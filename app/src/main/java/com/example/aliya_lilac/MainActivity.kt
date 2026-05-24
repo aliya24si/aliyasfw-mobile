@@ -28,6 +28,7 @@ class MainActivity : AppCompatActivity() {
             when (item.itemId) {
                 R.id.nav_home -> replaceFragment(HomeFragment(), "Dashboard Bina Desa")
                 R.id.nav_about -> replaceFragment(AboutFragment(), "Tentang Bina Desa")
+                R.id.nav_settings -> replaceFragment(SettingsFragment(), "Pengaturan Aplikasi")
                 R.id.nav_profile -> replaceFragment(ProfileFragment(), "Profil Pengembang")
             }
             true

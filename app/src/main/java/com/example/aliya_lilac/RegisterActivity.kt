@@ -4,6 +4,8 @@ import android.app.DatePickerDialog
 import android.os.Bundle
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.button.MaterialButton
+import com.google.android.material.textfield.TextInputLayout
 import java.util.*
 
 class RegisterActivity : AppCompatActivity() {
@@ -12,14 +14,18 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
-        val etNama = findViewById<EditText>(R.id.etNama)
-        val etTanggalLahir = findViewById<EditText>(R.id.etTanggalLahir)
+        // Binding kontainer TextInputLayout untuk kontrol penulisan error
+        val tilNama = findViewById<TextInputLayout>(R.id.tilNama)
+        val tilTanggalLahir = findViewById<TextInputLayout>(R.id.tilTanggalLahir)
+        val tilRegUsername = findViewById<TextInputLayout>(R.id.tilRegUsername)
+        val tilRegPassword = findViewById<TextInputLayout>(R.id.tilRegPassword)
+        val tilConfirmPassword = findViewById<TextInputLayout>(R.id.tilConfirmPassword)
+
+        // Binding komponen input bawaan interior
+        val etTanggalLahir = tilTanggalLahir.editText
         val rgGender = findViewById<RadioGroup>(R.id.rgGender)
         val spAgama = findViewById<Spinner>(R.id.spAgama)
-        val etUsername = findViewById<EditText>(R.id.etRegUsername)
-        val etPassword = findViewById<EditText>(R.id.etRegPassword)
-        val etConfirmPassword = findViewById<EditText>(R.id.etConfirmPassword)
-        val btnSubmit = findViewById<Button>(R.id.btnSubmitRegister)
+        val btnSubmit = findViewById<MaterialButton>(R.id.btnSubmitRegister)
 
         // Setup Spinner Agama
         val daftarAgama = arrayOf("Pilih Agama", "Islam", "Kristen", "Katolik", "Hindu", "Budha", "Khonghucu")
@@ -27,8 +33,8 @@ class RegisterActivity : AppCompatActivity() {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spAgama.adapter = adapter
 
-        // Fitur DatePicker
-        etTanggalLahir.setOnClickListener {
+        // Fitur DatePicker terpasang langsung pada EditText di dalam TextInputLayout
+        etTanggalLahir?.setOnClickListener {
             val c = Calendar.getInstance()
             DatePickerDialog(this, { _, year, month, day ->
                 etTanggalLahir.setText("$day/${month + 1}/$year")
@@ -36,19 +42,32 @@ class RegisterActivity : AppCompatActivity() {
         }
 
         btnSubmit.setOnClickListener {
-            val nama = etNama.text.toString()
-            val tgl = etTanggalLahir.text.toString()
-            val username = etUsername.text.toString()
-            val pass = etPassword.text.toString()
-            val confirm = etConfirmPassword.text.toString()
+            val nama = tilNama.editText?.text.toString().trim()
+            val tgl = tilTanggalLahir.editText?.text.toString().trim()
+            val username = tilRegUsername.editText?.text.toString().trim()
+            val pass = tilRegPassword.editText?.text.toString().trim()
+            val confirm = tilConfirmPassword.editText?.text.toString().trim()
             val selectedGenderId = rgGender.checkedRadioButtonId
             val agama = spAgama.selectedItem.toString()
 
+            // Reset status error di awal klik submit
+            tilNama.error = null
+            tilTanggalLahir.error = null
+            tilRegUsername.error = null
+            tilRegPassword.error = null
+            tilConfirmPassword.error = null
+
             var isValid = true
 
-            // Validasi (Menggunakan setError untuk menunjukkan isian yang salah)
-            if (nama.isEmpty()) { etNama.error = "Nama wajib diisi"; isValid = false }
-            if (tgl.isEmpty()) { etTanggalLahir.error = "Pilih tanggal lahir"; isValid = false }
+            // Validasi Input Menggunakan TextInputLayout error style
+            if (nama.isEmpty()) {
+                tilNama.error = "Nama wajib diisi"
+                isValid = false
+            }
+            if (tgl.isEmpty()) {
+                tilTanggalLahir.error = "Pilih tanggal lahir"
+                isValid = false
+            }
             if (selectedGenderId == -1) {
                 Toast.makeText(this, "Pilih Jenis Kelamin", Toast.LENGTH_SHORT).show()
                 isValid = false
@@ -57,10 +76,17 @@ class RegisterActivity : AppCompatActivity() {
                 Toast.makeText(this, "Pilih Agama", Toast.LENGTH_SHORT).show()
                 isValid = false
             }
-            if (username.isEmpty()) { etUsername.error = "Username wajib diisi"; isValid = false }
-            if (pass.isEmpty()) { etPassword.error = "Password wajib diisi"; isValid = false }
-            if (pass != confirm) {
-                etConfirmPassword.error = "Password tidak cocok"; isValid = false
+            if (username.isEmpty()) {
+                tilRegUsername.error = "Username wajib diisi"
+                isValid = false
+            }
+            if (pass.isEmpty()) {
+                tilRegPassword.error = "Password wajib diisi"
+                isValid = false
+            }
+            if (pass != confirm && pass.isNotEmpty()) {
+                tilConfirmPassword.error = "Password tidak cocok"
+                isValid = false
             }
 
             if (isValid) {
@@ -73,7 +99,7 @@ class RegisterActivity : AppCompatActivity() {
                 editor.apply()
 
                 Toast.makeText(this, "Registrasi Berhasil!", Toast.LENGTH_SHORT).show()
-                finish() // Kembali ke Login
+                finish() // Menutup activity dan otomatis kembali ke Login
             }
         }
     }

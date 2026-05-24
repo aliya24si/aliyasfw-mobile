@@ -7,4 +7,5 @@
     <color name="text_gray">#666666</color>
     <color name="navy_primary">#1A315E</color>
     <color name="gray_text">#757575</color>
+    <color name="amber_accent">#EDB254</color>
 </resources>
