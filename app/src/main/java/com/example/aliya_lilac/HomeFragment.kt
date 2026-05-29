@@ -5,10 +5,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
-import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.google.android.material.chip.Chip
-import com.google.android.material.chip.ChipGroup
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
+import androidx.viewpager2.widget.ViewPager2
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -16,6 +16,9 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
         val btnWebView: Button = view.findViewById(R.id.btnWebView)
         val btnLogout: Button = view.findViewById(R.id.btnLogout)
+
+        val tabLayout: TabLayout = view.findViewById(R.id.home_tab_layout)
+        val viewPager: ViewPager2 = view.findViewById(R.id.home_view_pager)
 
         btnWebView.setOnClickListener {
             val intent = Intent(requireContext(), WebViewActivity::class.java)
@@ -28,5 +31,16 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             startActivity(Intent(requireContext(), LoginActivity::class.java))
             requireActivity().finish()
         }
+
+        // --- Inisialisasi Sistem Tab Konten Bina Desa ---
+        val pagerAdapter = HomePagerAdapter(this)
+        viewPager.adapter = pagerAdapter
+
+        TabLayoutMediator(tabLayout, viewPager) { tab, position ->
+            when (position) {
+                0 -> tab.text = "Program Bantuan"
+                1 -> tab.text = "Penerima Bantuan"
+            }
+        }.attach()
     }
 }
