@@ -32,14 +32,15 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             requireActivity().finish()
         }
 
-        // --- Inisialisasi Sistem Tab Konten Bina Desa ---
         val pagerAdapter = HomePagerAdapter(this)
         viewPager.adapter = pagerAdapter
 
+        // Tambahkan sinkronisasi string nama untuk posisi tab ke-3
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             when (position) {
                 0 -> tab.text = "Program Bantuan"
                 1 -> tab.text = "Penerima Bantuan"
+                2 -> tab.text = "Berita Bansos"
             }
         }.attach()
     }

@@ -15,6 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Aliyalilac">
         <activity
+            android:name=".OnboardingActivity"
+            android:exported="false" />
+        <activity
             android:name=".RegisterActivity"
             android:exported="false" />
         <activity
