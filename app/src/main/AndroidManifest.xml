@@ -4,6 +4,9 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.USE_EXACT_ALARM" />
 
     <application
         android:allowBackup="true"
@@ -14,6 +17,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Aliyalilac">
+        <activity
+            android:name=".DaftarPengaduanActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PengaduanFormActivity"
+            android:exported="false" />
+
+        <receiver
+            android:name=".utils.ReminderReceiver"
+            android:exported="false" />
+
         <activity
             android:name=".OnboardingActivity"
             android:exported="false" />

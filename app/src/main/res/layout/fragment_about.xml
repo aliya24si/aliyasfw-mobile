@@ -297,5 +297,16 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnKeFormPengaduan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="24dp"
+            android:text="Buat Pengaduan Fasilitas Desa"
+            android:backgroundTint="#EDB254"
+            android:textColor="#1A315E"
+            app:icon="@android:drawable/ic_menu_edit"
+            app:iconTint="#1A315E" />
     </LinearLayout>
 </ScrollView>
