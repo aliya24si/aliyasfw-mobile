@@ -61,4 +61,10 @@ dependencies {
     ksp("androidx.room:room-compiler:$room_version")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.2")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.1")
+    // CameraX (Materi Pertemuan 13)
+    implementation("androidx.camera:camera-camera2:1.3.3")
+    implementation("androidx.camera:camera-lifecycle:1.3.3")
+    implementation("androidx.camera:camera-view:1.3.3")
+// Google ML Kit Barcode Scanning untuk QR Code
+    implementation("com.google.mlkit:barcode-scanning:17.2.0")
 }

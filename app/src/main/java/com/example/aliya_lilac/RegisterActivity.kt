@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.button.MaterialButton
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputLayout
 import java.util.*
 
@@ -28,7 +29,15 @@ class RegisterActivity : AppCompatActivity() {
         val btnSubmit = findViewById<MaterialButton>(R.id.btnSubmitRegister)
 
         // Setup Spinner Agama
-        val daftarAgama = arrayOf("Pilih Agama", "Islam", "Kristen", "Katolik", "Hindu", "Budha", "Khonghucu")
+        val daftarAgama = arrayOf(
+            "Pilih Agama",
+            "Islam",
+            "Kristen",
+            "Katolik",
+            "Hindu",
+            "Budha",
+            "Khonghucu"
+        )
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, daftarAgama)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spAgama.adapter = adapter
@@ -36,9 +45,15 @@ class RegisterActivity : AppCompatActivity() {
         // Fitur DatePicker terpasang langsung pada EditText di dalam TextInputLayout
         etTanggalLahir?.setOnClickListener {
             val c = Calendar.getInstance()
-            DatePickerDialog(this, { _, year, month, day ->
-                etTanggalLahir.setText("$day/${month + 1}/$year")
-            }, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH)).show()
+            DatePickerDialog(
+                this,
+                { _, year, month, day ->
+                    etTanggalLahir.setText("$day/${month + 1}/$year")
+                },
+                c.get(Calendar.YEAR),
+                c.get(Calendar.MONTH),
+                c.get(Calendar.DAY_OF_MONTH)
+            ).show()
         }
 
         btnSubmit.setOnClickListener {
@@ -90,16 +105,24 @@ class RegisterActivity : AppCompatActivity() {
             }
 
             if (isValid) {
-                // Simpan ke Shared Preferences
-                val sharedPref = getSharedPreferences("UserPrefs", MODE_PRIVATE)
-                val editor = sharedPref.edit()
-                editor.putString("registered_name", nama)
-                editor.putString("registered_user", username)
-                editor.putString("registered_pass", pass)
-                editor.apply()
+                MaterialAlertDialogBuilder(this)
+                    .setTitle("Konfirmasi Registrasi")
+                    .setMessage("Apakah data yang Anda masukkan sudah benar?")
+                    .setPositiveButton("Ya") { _, _ ->
 
-                Toast.makeText(this, "Registrasi Berhasil!", Toast.LENGTH_SHORT).show()
-                finish() // Menutup activity dan otomatis kembali ke Login
+                        // Simpan ke Shared Preferences
+                        val sharedPref = getSharedPreferences("UserPrefs", MODE_PRIVATE)
+                        val editor = sharedPref.edit()
+                        editor.putString("registered_name", nama)
+                        editor.putString("registered_user", username)
+                        editor.putString("registered_pass", pass)
+                        editor.apply()
+
+                        Toast.makeText(this, "Registrasi Berhasil!", Toast.LENGTH_SHORT).show()
+                        finish() // Menutup activity dan otomatis kembali ke Login
+                    }
+                    .setNegativeButton("Batal", null)
+                    .show()
             }
         }
     }

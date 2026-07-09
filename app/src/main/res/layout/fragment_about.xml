@@ -308,5 +308,18 @@
             android:textColor="#1A315E"
             app:icon="@android:drawable/ic_menu_edit"
             app:iconTint="#1A315E" />
+
+        <!-- TOMBOL BARU UNTUK FITUR PENYALURAN BANTUAN -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnKePenyaluranBantuan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-8dp"
+            android:layout_marginBottom="24dp"
+            android:text="Penyaluran &amp; Validasi Bantuan"
+            android:backgroundTint="#1A315E"
+            android:textColor="#FFFFFF"
+            app:icon="@android:drawable/ic_menu_camera"
+            app:iconTint="#FFFFFF" />
     </LinearLayout>
 </ScrollView>

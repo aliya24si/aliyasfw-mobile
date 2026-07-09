@@ -14,7 +14,6 @@ import com.google.android.material.chip.ChipGroup
 
 class AboutFragment : Fragment(R.layout.fragment_about) {
 
-    // Launcher untuk meminta izin notifikasi (Android 13+)
     private val requestNotificationPermissionLauncher =
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
             if (isGranted) {
@@ -22,7 +21,7 @@ class AboutFragment : Fragment(R.layout.fragment_about) {
                 bukaFormPengaduan()
             } else {
                 Toast.makeText(requireContext(), "Izin ditolak, Anda tidak akan menerima notifikasi pengaduan.", Toast.LENGTH_LONG).show()
-                bukaFormPengaduan() // Tetap buka form, tapi infokan ke user
+                bukaFormPengaduan()
             }
         }
 
@@ -34,7 +33,9 @@ class AboutFragment : Fragment(R.layout.fragment_about) {
         val tvDetailDesc: TextView = view.findViewById(R.id.tvDetailDesc)
         val btnKeFormPengaduan: MaterialButton = view.findViewById(R.id.btnKeFormPengaduan)
 
-        // Logika chipGroup kamu yang sudah ada tetap dipertahankan
+        // Inisialisasi Tombol Penyaluran Bantuan Baru
+        val btnKePenyaluranBantuan: MaterialButton = view.findViewById(R.id.btnKePenyaluranBantuan)
+
         chipGroupAbout.setOnCheckedStateChangeListener { group, checkedIds ->
             val selectedChipId = checkedIds.firstOrNull()
             when (selectedChipId) {
@@ -53,13 +54,10 @@ class AboutFragment : Fragment(R.layout.fragment_about) {
             }
         }
 
-        // Logika klik tombol pengaduan
         btnKeFormPengaduan.setOnClickListener {
-            // Cek apakah perangkat butuh izin runtime (Android 13 ke atas)
             if (PermissionHelper.isNotificationPermissionRequired()) {
                 val permission = Manifest.permission.POST_NOTIFICATIONS
                 if (!PermissionHelper.hasPermission(requireContext(), permission)) {
-                    // Jika belum punya izin, minta izin dulu
                     PermissionHelper.requestPermission(requestNotificationPermissionLauncher, permission)
                 } else {
                     bukaFormPengaduan()
@@ -67,6 +65,12 @@ class AboutFragment : Fragment(R.layout.fragment_about) {
             } else {
                 bukaFormPengaduan()
             }
+        }
+
+        // Klik ke Fitur Penyaluran Bantuan
+        btnKePenyaluranBantuan.setOnClickListener {
+            val intent = Intent(requireContext(), PenyaluranBantuanActivity::class.java)
+            startActivity(intent)
         }
     }
 

@@ -7,6 +7,8 @@
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
     <uses-permission android:name="android.permission.USE_EXACT_ALARM" />
+    <uses-feature android:name="android.hardware.camera" android:required="false" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:allowBackup="true"
@@ -17,6 +19,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Aliyalilac">
+        <activity
+            android:name=".FormBantuanActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PenyaluranBantuanActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TryActivity"
+            android:exported="false" />
         <activity
             android:name=".DaftarPengaduanActivity"
             android:exported="false" />

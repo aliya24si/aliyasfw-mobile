@@ -20,7 +20,6 @@ data class NewsModel(
 )
 
 interface NewsApiService {
-
     @GET("v2/everything?q=indonesia&apiKey=c770505117664ffbaed2cc3bb49ae263")
     suspend fun getBansosNews(): NewsResponse
 }
